@@ -4,7 +4,7 @@ class CountersModel {
 
     private val counters = mutableListOf(0, 0, 0)
 
-    fun getCounter(index: Int) = counters[index]
+    private fun getCounter(index: Int) = counters[index]
 
     fun next(index: Int): Int {
         counters[index]++
