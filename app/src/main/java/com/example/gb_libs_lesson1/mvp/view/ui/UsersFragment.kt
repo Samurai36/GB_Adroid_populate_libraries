@@ -10,6 +10,8 @@ import com.example.gb_libs_lesson1.databinding.FragmentUsersBinding
 import com.example.gb_libs_lesson1.mvp.model.GithubUsersRepo
 import com.example.gb_libs_lesson1.mvp.presenter.UsersPresenter
 import com.example.gb_libs_lesson1.App
+import io.reactivex.rxjava3.core.Scheduler
+import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -20,7 +22,8 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
     private val presenter by moxyPresenter {
         UsersPresenter(
             GithubUsersRepo(),
-            App.instance.router
+            App.instance.router,
+            Schedulers.io()
         )
     }
 

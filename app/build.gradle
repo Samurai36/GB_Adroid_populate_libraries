@@ -40,6 +40,9 @@ android {
 }
 
 dependencies {
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+
     implementation 'ru.terrakok.cicerone:cicerone:5.1.1'
 
     implementation "com.github.moxy-community:moxy:2.1.2"
