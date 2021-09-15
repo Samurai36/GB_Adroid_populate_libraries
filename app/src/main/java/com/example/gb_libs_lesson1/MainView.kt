@@ -1,6 +1,7 @@
 package com.example.gb_libs_lesson1
 
-interface MainView {
+import moxy.MvpView
+import moxy.viewstate.strategy.alias.AddToEndSingle
 
-    fun setButtonText(index: Int, text: String)
-}
+@AddToEndSingle
+interface MainView : MvpView
