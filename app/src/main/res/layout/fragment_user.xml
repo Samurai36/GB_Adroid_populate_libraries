@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/user_login"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvUserRepos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="70dp"
-        android:clipToPadding="false" />
+        android:paddingTop="16dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"/>
 
 </FrameLayout>

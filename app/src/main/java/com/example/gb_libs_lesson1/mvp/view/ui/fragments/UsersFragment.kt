@@ -1,4 +1,4 @@
-package com.example.gb_libs_lesson1.mvp.view.ui
+package com.example.gb_libs_lesson1.mvp.view.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,9 @@ import com.example.gb_libs_lesson1.databinding.FragmentUsersBinding
 import com.example.gb_libs_lesson1.mvp.model.GithubUsersRepo
 import com.example.gb_libs_lesson1.mvp.presenter.UsersPresenter
 import com.example.gb_libs_lesson1.App
-import io.reactivex.rxjava3.core.Scheduler
+import com.example.gb_libs_lesson1.mvp.view.ui.adapters.UsersRVAdapter
+import com.example.gb_libs_lesson1.mvp.view.ui.UsersView
+import com.example.gb_libs_lesson1.mvp.view.ui.images.GlideImageLoader
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -27,14 +29,15 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
         )
     }
 
-    private val adapter by lazy { UsersRVAdapter(presenter.usersListPresenter) }
+    private val adapter by lazy { UsersRVAdapter(presenter.usersListPresenter, GlideImageLoader()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return FragmentUsersBinding.inflate(inflater, container, false).also {
+        return FragmentUsersBinding.inflate(inflater,
+            container, false).also {
             vb = it
         }.root
     }
