@@ -1,7 +1,7 @@
 package com.example.gb_libs_lesson1.mvp.presenter
 
 import com.example.gb_libs_lesson1.Screens.AndroidScreens
-import com.example.gb_libs_lesson1.MainView
+import com.example.gb_libs_lesson1.mvp.view.ui.MainView
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
 

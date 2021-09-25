@@ -2,9 +2,9 @@ package com.example.gb_libs_lesson1
 
 import android.os.Bundle
 import com.example.gb_libs_lesson1.databinding.ActivityMainBinding
-import com.example.gb_libs_lesson1.databinding.FragmentUsersBinding
 import com.example.gb_libs_lesson1.mvp.presenter.MainPresenter
 import com.example.gb_libs_lesson1.mvp.view.BackButtonListener
+import com.example.gb_libs_lesson1.mvp.view.ui.MainView
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import ru.terrakok.cicerone.android.support.SupportAppNavigator

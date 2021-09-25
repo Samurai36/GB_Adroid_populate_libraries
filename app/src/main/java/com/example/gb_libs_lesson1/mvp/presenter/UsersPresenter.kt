@@ -1,13 +1,12 @@
 package com.example.gb_libs_lesson1.mvp.presenter
 
 import com.example.gb_libs_lesson1.Screens.AndroidScreens
-import com.example.gb_libs_lesson1.mvp.model.GithubUser
+import com.example.gb_libs_lesson1.mvp.model.dataclasses.GithubUser
 import com.example.gb_libs_lesson1.mvp.model.GithubUsersRepo
 import com.example.gb_libs_lesson1.mvp.view.UserItemView
 import com.example.gb_libs_lesson1.mvp.view.ui.UsersView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Scheduler
-import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
 
@@ -26,7 +25,8 @@ class UsersPresenter(
 
         override fun bindView(View: UserItemView) {
             val user = users[View.pos]
-            View.showLogin(user.login)
+            View.showLogin(user.login.orEmpty())
+            View.showAvatar(user.avatarURL.orEmpty())
         }
     }
 
@@ -45,13 +45,15 @@ class UsersPresenter(
     }
 
     private fun loadData() {
-        usersRepo.getUsers().subscribeOn(schedulerUI).observeOn(AndroidSchedulers.mainThread()).subscribe({
-            usersListPresenter.users.clear()
-            usersListPresenter.users.addAll(it)
-            viewState.updateList()
-        }, {
-            it.printStackTrace()
-        })
+        usersRepo.getUsers().subscribeOn(schedulerUI)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                usersListPresenter.users.clear()
+                usersListPresenter.users.addAll(it)
+                viewState.updateList()
+            }, {
+                it.printStackTrace()
+            })
     }
 
     fun backPressed(): Boolean {
