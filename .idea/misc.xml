@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/Android_RX_dagger_moxy/HW2/GB-Libraries-Sept2021-master/GBLibrariesLesson1/app/src/main/res/layout/activity_main.xml" value="0.371875" />
+        <entry key="..\:/Android/Android_RX_dagger_moxy/HW2/GB-Libraries-Sept2021-master/GBLibrariesLesson1/app/src/main/res/layout/fragment_user.xml" value="0.371875" />
+        <entry key="..\:/Android/Android_RX_dagger_moxy/HW2/GB-Libraries-Sept2021-master/GBLibrariesLesson1/app/src/main/res/layout/fragment_users.xml" value="0.371875" />
+        <entry key="..\:/Android/Android_RX_dagger_moxy/HW2/GB-Libraries-Sept2021-master/GBLibrariesLesson1/app/src/main/res/layout/item_user.xml" value="0.358695652173913" />
+        <entry key="..\:/Android/Android_RX_dagger_moxy/HW4/GB-Libraries-Sept2021-master/GBLibrariesLesson1/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
+        <entry key="..\:/Android/Android_RX_dagger_moxy/HW5/GB-Libraries-Sept2021-master/GBLibrariesLesson1/app/src/main/res/layout/fragment_user.xml" value="0.2694746376811594" />
+        <entry key="..\:/Android/Android_RX_dagger_moxy/HW5/GB-Libraries-Sept2021-master/GBLibrariesLesson1/app/src/main/res/layout/fragment_userRepositories.xml" value="0.371875" />
+        <entry key="..\:/Android/Android_RX_dagger_moxy/HW5/GB-Libraries-Sept2021-master/GBLibrariesLesson1/app/src/main/res/layout/fragment_users.xml" value="0.2694746376811594" />
+        <entry key="..\:/Android/Android_RX_dagger_moxy/HW5/GB-Libraries-Sept2021-master/GBLibrariesLesson1/app/src/main/res/layout/item_user.xml" value="0.13360507246376813" />
+        <entry key="..\:/Android/Android_RX_dagger_moxy/HW5/GB-Libraries-Sept2021-master/GBLibrariesLesson1/app/src/main/res/layout/item_user_repos.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.247451343836886" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.28229166666666666" />
       </map>
