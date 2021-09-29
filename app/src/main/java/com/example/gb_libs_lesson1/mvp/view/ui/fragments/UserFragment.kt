@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gb_libs_lesson1.App
 import com.example.gb_libs_lesson1.databinding.FragmentUserBinding
+import com.example.gb_libs_lesson1.mvp.model.GithubDatabase
+import com.example.gb_libs_lesson1.mvp.model.GithubRepositoriesCache
 import com.example.gb_libs_lesson1.mvp.model.GithubRepositoriesRepo
 import com.example.gb_libs_lesson1.mvp.model.dataclasses.GithubUser
+import com.example.gb_libs_lesson1.mvp.model.network.AndroidNetworkStatus
 import com.example.gb_libs_lesson1.mvp.model.remote.ApiHolder
 import com.example.gb_libs_lesson1.mvp.presenter.UserPresenter
 import com.example.gb_libs_lesson1.mvp.view.BackButtonListener
@@ -38,7 +41,10 @@ class UserFragment : MvpAppCompatFragment(), UserView, BackButtonListener {
     val presenter: UserPresenter by moxyPresenter {
         val user = arguments?.getParcelable<GithubUser>(USER_ARG) as GithubUser
         UserPresenter(
-            GithubRepositoriesRepo(ApiHolder.apiService),
+            GithubRepositoriesRepo(
+                AndroidNetworkStatus(requireContext()),
+                GithubRepositoriesCache(GithubDatabase.getInstance())
+            ),
             App.instance.router, AndroidSchedulers.mainThread(), user
         )
     }
