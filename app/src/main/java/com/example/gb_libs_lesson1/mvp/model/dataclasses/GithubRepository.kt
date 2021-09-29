@@ -9,6 +9,9 @@ import kotlinx.android.parcel.Parcelize
 data class GithubRepository(
 
     @Expose
+    val id: String,
+
+    @Expose
     val name: String? = null,
 
     @Expose
@@ -17,4 +20,6 @@ data class GithubRepository(
 
     @Expose
     val description: String? = null
-) : Parcelable
+) : Parcelable {
+
+}
