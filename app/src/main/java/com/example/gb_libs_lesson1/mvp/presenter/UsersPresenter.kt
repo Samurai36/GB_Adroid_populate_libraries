@@ -9,11 +9,17 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
 class UsersPresenter(
-    private val usersRepo: GithubUsersRepo,
-    private val router: Router, private val schedulerUI: Scheduler
+    private val schedulerUI: Scheduler
 ) : MvpPresenter<UsersView>() {
+
+    @Inject
+    lateinit var usersRepo: GithubUsersRepo
+
+    @Inject
+    lateinit var router: Router
 
     class UsersListPresenter : IUserListPresenter {
 

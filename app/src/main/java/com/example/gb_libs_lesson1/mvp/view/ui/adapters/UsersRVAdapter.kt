@@ -7,9 +7,9 @@ import com.example.gb_libs_lesson1.databinding.ItemUserBinding
 import com.example.gb_libs_lesson1.mvp.presenter.IUserListPresenter
 import com.example.gb_libs_lesson1.mvp.view.UserItemView
 import com.example.gb_libs_lesson1.mvp.view.ui.images.GlideImageLoader
+import javax.inject.Inject
 
-
-class UsersRVAdapter(
+class UsersRVAdapter @Inject constructor(
     private val presenter: IUserListPresenter,
     private val imageLoader: GlideImageLoader
 ) : RecyclerView.Adapter<UsersRVAdapter.ViewHolder>() {

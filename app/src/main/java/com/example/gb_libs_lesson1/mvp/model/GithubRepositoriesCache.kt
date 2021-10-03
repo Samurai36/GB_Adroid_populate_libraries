@@ -6,8 +6,9 @@ import com.example.gb_libs_lesson1.mvp.model.dataclasses.RoomGithubRepository
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class GithubRepositoriesCache(private val db: GithubDatabase) : IGithubRepositoriesCache {
+class GithubRepositoriesCache @Inject constructor(private val db: GithubDatabase) : IGithubRepositoriesCache {
     override fun getUserRepos(user: GithubUser): Single<List<GithubRepository>> =
         Single.fromCallable {
             val roomUser = db.userDao.findByLogin(user.login.orEmpty())
