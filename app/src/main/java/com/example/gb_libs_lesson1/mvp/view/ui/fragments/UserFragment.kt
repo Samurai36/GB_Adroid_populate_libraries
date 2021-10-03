@@ -7,16 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gb_libs_lesson1.App
 import com.example.gb_libs_lesson1.databinding.FragmentUserBinding
-import com.example.gb_libs_lesson1.mvp.model.GithubDatabase
-import com.example.gb_libs_lesson1.mvp.model.GithubRepositoriesCache
-import com.example.gb_libs_lesson1.mvp.model.GithubRepositoriesRepo
 import com.example.gb_libs_lesson1.mvp.model.dataclasses.GithubUser
-import com.example.gb_libs_lesson1.mvp.model.network.AndroidNetworkStatus
-import com.example.gb_libs_lesson1.mvp.model.remote.ApiHolder
 import com.example.gb_libs_lesson1.mvp.presenter.UserPresenter
 import com.example.gb_libs_lesson1.mvp.view.BackButtonListener
-import com.example.gb_libs_lesson1.mvp.view.ui.adapters.UserRepositoriesRVAdapter
 import com.example.gb_libs_lesson1.mvp.view.ui.UserView
+import com.example.gb_libs_lesson1.mvp.view.ui.adapters.UserRepositoriesRVAdapter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -40,13 +35,10 @@ class UserFragment : MvpAppCompatFragment(), UserView, BackButtonListener {
 
     val presenter: UserPresenter by moxyPresenter {
         val user = arguments?.getParcelable<GithubUser>(USER_ARG) as GithubUser
-        UserPresenter(
-            GithubRepositoriesRepo(
-                AndroidNetworkStatus(requireContext()),
-                GithubRepositoriesCache(GithubDatabase.getInstance())
-            ),
-            App.instance.router, AndroidSchedulers.mainThread(), user
-        )
+        UserPresenter(AndroidSchedulers.mainThread(), user
+        ).apply {
+            App.instance.appComponent.inject(this)
+        }
     }
 
     override fun onCreateView(

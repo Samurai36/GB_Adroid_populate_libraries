@@ -5,8 +5,9 @@ import com.example.gb_libs_lesson1.mvp.model.dataclasses.RoomGithubUser
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class GithubUserCache(val db: GithubDatabase): IGithubUserCache {
+class GithubUserCache @Inject constructor(val db: GithubDatabase): IGithubUserCache {
     override fun getUsers(): Single<List<GithubUser>> {
         return Single.fromCallable {
             db.userDao.getAll().map {

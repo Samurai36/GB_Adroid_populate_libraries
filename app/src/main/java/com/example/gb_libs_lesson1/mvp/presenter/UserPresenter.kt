@@ -9,11 +9,17 @@ import com.example.gb_libs_lesson1.mvp.view.ui.UserView
 import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
 class UserPresenter(
-    private val repositoriesRepo: GithubRepositoriesRepo,
-    private val router: Router, private val schedulerUI: Scheduler, private val user: GithubUser
+    private val schedulerUI: Scheduler,
+    private val user: GithubUser
 ) : MvpPresenter<UserView>() {
+
+    @Inject
+    lateinit var repositoriesRepo: GithubRepositoriesRepo
+    @Inject
+    lateinit var router: Router
 
     class RepositoriesListPresenter : IUserRepositoryListPresenter {
 

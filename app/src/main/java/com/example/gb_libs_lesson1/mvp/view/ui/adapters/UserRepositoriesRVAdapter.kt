@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gb_libs_lesson1.databinding.ItemUserReposBinding
 import com.example.gb_libs_lesson1.mvp.presenter.IUserRepositoryListPresenter
 import com.example.gb_libs_lesson1.mvp.view.RepositoryItemView
+import javax.inject.Inject
 
-class UserRepositoriesRVAdapter(val presenter: IUserRepositoryListPresenter) :
+class UserRepositoriesRVAdapter  @Inject constructor(val presenter: IUserRepositoryListPresenter) :
     RecyclerView.Adapter<UserRepositoriesRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
