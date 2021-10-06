@@ -21,10 +21,11 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
     private var vb: FragmentUsersBinding? = null
 
     private val presenter by moxyPresenter {
+        App.instance.initUsersSubcomponent()
         UsersPresenter(
             Schedulers.io()
         ).apply {
-            App.instance.appComponent.inject(this)
+            App.instance.usersSubcomponent?.inject(this)
         }
     }
 

@@ -1,7 +1,9 @@
 package com.example.gb_libs_lesson1.mvp.presenter
 
+import com.example.gb_libs_lesson1.App
 import com.example.gb_libs_lesson1.Screens.AndroidScreens
 import com.example.gb_libs_lesson1.mvp.model.GithubRepositoriesRepo
+import com.example.gb_libs_lesson1.mvp.model.IGithubRepositoriesRepo
 import com.example.gb_libs_lesson1.mvp.model.dataclasses.GithubRepository
 import com.example.gb_libs_lesson1.mvp.model.dataclasses.GithubUser
 import com.example.gb_libs_lesson1.mvp.view.RepositoryItemView
@@ -17,7 +19,7 @@ class UserPresenter(
 ) : MvpPresenter<UserView>() {
 
     @Inject
-    lateinit var repositoriesRepo: GithubRepositoriesRepo
+    lateinit var repositoriesRepo: IGithubRepositoriesRepo
     @Inject
     lateinit var router: Router
 
@@ -61,5 +63,10 @@ class UserPresenter(
     fun backClick(): Boolean {
         router.exit()
         return true
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        App.instance.releaseUserReposScope()
     }
 }

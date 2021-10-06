@@ -2,25 +2,15 @@ package com.example.gb_libs_lesson1.di.modules
 
 import android.content.Context
 import androidx.room.Room
+import com.example.gb_libs_lesson1.di.scopes.UserRepositoryScope
+import com.example.gb_libs_lesson1.di.scopes.UsersScope
 import com.example.gb_libs_lesson1.mvp.model.*
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class CacheModule {
-
-    @Provides
-    @Suppress
-    fun getUsersCache(db: GithubDatabase): IGithubUserCache {
-        return GithubUserCache(db)
-    }
-
-    @Provides
-    @Suppress
-    fun getUserReposCache(db: GithubDatabase): IGithubRepositoriesCache {
-        return GithubRepositoriesCache(db)
-    }
+class DbModule {
 
     @Provides
     @Singleton

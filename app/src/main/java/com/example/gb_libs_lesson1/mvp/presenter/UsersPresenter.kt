@@ -1,8 +1,10 @@
 package com.example.gb_libs_lesson1.mvp.presenter
 
+import com.example.gb_libs_lesson1.App
 import com.example.gb_libs_lesson1.Screens.AndroidScreens
 import com.example.gb_libs_lesson1.mvp.model.dataclasses.GithubUser
 import com.example.gb_libs_lesson1.mvp.model.GithubUsersRepo
+import com.example.gb_libs_lesson1.mvp.model.IGithubUsersRepo
 import com.example.gb_libs_lesson1.mvp.view.UserItemView
 import com.example.gb_libs_lesson1.mvp.view.ui.UsersView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -16,7 +18,7 @@ class UsersPresenter(
 ) : MvpPresenter<UsersView>() {
 
     @Inject
-    lateinit var usersRepo: GithubUsersRepo
+    lateinit var usersRepo: IGithubUsersRepo
 
     @Inject
     lateinit var router: Router
@@ -65,5 +67,10 @@ class UsersPresenter(
     fun backPressed(): Boolean {
         router.exit()
         return true
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        App.instance.releaseUsersScope()
     }
 }

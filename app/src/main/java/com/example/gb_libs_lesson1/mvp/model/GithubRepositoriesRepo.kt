@@ -12,9 +12,9 @@ class GithubRepositoriesRepo @Inject constructor(
     private val networkStatus: INetworkStatus,
     private val cache: IGithubRepositoriesCache,
     private val apiHolder: IApiHolder
-) {
+) : IGithubRepositoriesRepo {
 
-    fun getRepositories(user: GithubUser): Single<List<GithubRepository>> =
+    override fun getRepositories(user: GithubUser): Single<List<GithubRepository>> =
         networkStatus.isOnlineSingle().flatMap { isOnline ->
             if (isOnline) {
                 user.reposURL?.let { url ->
