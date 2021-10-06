@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gb_libs_lesson1.App
+import com.example.gb_libs_lesson1.FragmentInitializer
 import com.example.gb_libs_lesson1.databinding.FragmentUserBinding
 import com.example.gb_libs_lesson1.mvp.model.dataclasses.GithubUser
 import com.example.gb_libs_lesson1.mvp.presenter.UserPresenter
@@ -20,24 +21,17 @@ class UserFragment : MvpAppCompatFragment(), UserView, BackButtonListener {
 
     private var vb: FragmentUserBinding? = null
 
-    companion object {
-
-        private const val USER_ARG = "user"
-
-        fun newInstance(user: GithubUser) = UserFragment().apply {
-            arguments = Bundle().apply {
-                putParcelable(USER_ARG, user)
-            }
-        }
-    }
+    private val user by initParams<GithubUser>()
 
     private val adapter by lazy { UserRepositoriesRVAdapter(presenter.repositoriesListPresenter) }
 
-    val presenter: UserPresenter by moxyPresenter {
-        val user = arguments?.getParcelable<GithubUser>(USER_ARG) as GithubUser
+    companion object : FragmentInitializer<GithubUser>
+
+    private val presenter: UserPresenter by moxyPresenter {
+        App.instance.initUserRepositorySubcomponent()
         UserPresenter(AndroidSchedulers.mainThread(), user
         ).apply {
-            App.instance.appComponent.inject(this)
+            App.instance.userRepositorySubcomponent?.inject(this)
         }
     }
 
