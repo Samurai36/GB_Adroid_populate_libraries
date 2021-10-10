@@ -29,7 +29,7 @@ class UserFragment : MvpAppCompatFragment(), UserView, BackButtonListener {
 
     private val presenter: UserPresenter by moxyPresenter {
         App.instance.initUserRepositorySubcomponent()
-        UserPresenter(AndroidSchedulers.mainThread(), user
+        UserPresenter(user
         ).apply {
             App.instance.userRepositorySubcomponent?.inject(this)
         }
