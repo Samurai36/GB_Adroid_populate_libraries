@@ -22,9 +22,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
 
     private val presenter by moxyPresenter {
         App.instance.initUsersSubcomponent()
-        UsersPresenter(
-            Schedulers.io()
-        ).apply {
+        UsersPresenter().apply {
             App.instance.usersSubcomponent?.inject(this)
         }
     }

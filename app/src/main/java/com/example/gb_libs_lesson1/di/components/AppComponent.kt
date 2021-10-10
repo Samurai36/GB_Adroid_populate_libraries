@@ -13,7 +13,8 @@ import javax.inject.Singleton
         ApiModule::class,
         AppModule::class,
         DbModule::class,
-        CiceroneModule::class
+        CiceroneModule::class,
+        SchedulerModule::class
     ]
 )
 interface AppComponent {

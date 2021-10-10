@@ -12,13 +12,16 @@ import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
+import javax.inject.Named
 
-class UsersPresenter(
-    private val schedulerUI: Scheduler
-) : MvpPresenter<UsersView>() {
+class UsersPresenter : MvpPresenter<UsersView>() {
 
     @Inject
     lateinit var usersRepo: IGithubUsersRepo
+
+    @Inject
+    @Named("schedulerIo")
+    lateinit var schedulerUI: Scheduler
 
     @Inject
     lateinit var router: Router
