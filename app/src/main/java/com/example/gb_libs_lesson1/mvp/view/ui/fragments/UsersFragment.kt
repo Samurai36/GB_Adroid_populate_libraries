@@ -12,7 +12,6 @@ import com.example.gb_libs_lesson1.mvp.view.BackButtonListener
 import com.example.gb_libs_lesson1.mvp.view.ui.UsersView
 import com.example.gb_libs_lesson1.mvp.view.ui.adapters.UsersRVAdapter
 import com.example.gb_libs_lesson1.mvp.view.ui.images.GlideImageLoader
-import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
