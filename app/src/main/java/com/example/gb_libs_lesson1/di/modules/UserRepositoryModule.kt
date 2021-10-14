@@ -16,10 +16,9 @@ class UserRepositoryModule {
     @Provides
     @UserRepositoryScope
     fun getUserReposCache(
-        db: GithubDatabase,
-        @Named("schedulerIo") schedulerUI: Scheduler
+        db: GithubDatabase
     ): IGithubRepositoriesCache {
-        return GithubRepositoriesCache(db, schedulerUI)
+        return GithubRepositoriesCache(db)
     }
 
     @Provides
@@ -27,10 +26,9 @@ class UserRepositoryModule {
     fun repositoriesRepo(
         networkStatus: INetworkStatus,
         cache: IGithubRepositoriesCache,
-        apiHolder: IApiHolder,
-        @Named("schedulerIo") schedulerUI: Scheduler
+        apiHolder: IApiHolder
     ): IGithubRepositoriesRepo {
-        return GithubRepositoriesRepo(networkStatus, cache, apiHolder, schedulerUI)
+        return GithubRepositoriesRepo(networkStatus, cache, apiHolder)
     }
 
 }
