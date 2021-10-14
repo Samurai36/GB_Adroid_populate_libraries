@@ -2,12 +2,10 @@ package com.example.gb_libs_lesson1.mvp.presenter
 
 import com.example.gb_libs_lesson1.App
 import com.example.gb_libs_lesson1.Screens.AndroidScreens
-import com.example.gb_libs_lesson1.mvp.model.dataclasses.GithubUser
-import com.example.gb_libs_lesson1.mvp.model.GithubUsersRepo
 import com.example.gb_libs_lesson1.mvp.model.IGithubUsersRepo
+import com.example.gb_libs_lesson1.mvp.model.dataclasses.GithubUser
 import com.example.gb_libs_lesson1.mvp.view.UserItemView
 import com.example.gb_libs_lesson1.mvp.view.ui.UsersView
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
@@ -22,6 +20,10 @@ class UsersPresenter : MvpPresenter<UsersView>() {
     @Inject
     @Named("schedulerIo")
     lateinit var schedulerUI: Scheduler
+
+    @Inject
+    @Named("schedulerMain")
+    lateinit var schedulerMainThread: Scheduler
 
     @Inject
     lateinit var router: Router
@@ -57,7 +59,7 @@ class UsersPresenter : MvpPresenter<UsersView>() {
 
     private fun loadData() {
         usersRepo.getUsers().subscribeOn(schedulerUI)
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(schedulerMainThread)
             .subscribe({
                 usersListPresenter.users.clear()
                 usersListPresenter.users.addAll(it)

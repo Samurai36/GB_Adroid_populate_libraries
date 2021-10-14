@@ -7,14 +7,19 @@ import com.example.gb_libs_lesson1.mvp.model.network.INetworkStatus
 import com.example.gb_libs_lesson1.mvp.model.remote.IApiHolder
 import dagger.Module
 import dagger.Provides
+import io.reactivex.rxjava3.core.Scheduler
+import javax.inject.Named
 
 @Module
 class UserRepositoryModule {
 
     @Provides
     @UserRepositoryScope
-    fun getUserReposCache(db: GithubDatabase): IGithubRepositoriesCache {
-        return GithubRepositoriesCache(db)
+    fun getUserReposCache(
+        db: GithubDatabase,
+        @Named("schedulerIo") schedulerUI: Scheduler
+    ): IGithubRepositoriesCache {
+        return GithubRepositoriesCache(db, schedulerUI)
     }
 
     @Provides
@@ -22,9 +27,10 @@ class UserRepositoryModule {
     fun repositoriesRepo(
         networkStatus: INetworkStatus,
         cache: IGithubRepositoriesCache,
-        apiHolder: IApiHolder
+        apiHolder: IApiHolder,
+        @Named("schedulerIo") schedulerUI: Scheduler
     ): IGithubRepositoriesRepo {
-        return GithubRepositoriesRepo(networkStatus, cache, apiHolder)
+        return GithubRepositoriesRepo(networkStatus, cache, apiHolder, schedulerUI)
     }
 
 }
