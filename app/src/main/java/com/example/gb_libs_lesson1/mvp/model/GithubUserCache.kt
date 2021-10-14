@@ -5,12 +5,13 @@ import com.example.gb_libs_lesson1.mvp.model.dataclasses.RoomGithubUser
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Named
 
 class GithubUserCache @Inject constructor(
-    val db: GithubDatabase
+    val db: GithubDatabase,
+    @Named("schedulerIo")
+    private val schedulerUI: Scheduler
 ) : IGithubUserCache {
     override fun getUsers(): Single<List<GithubUser>> {
         return Single.fromCallable {
@@ -31,6 +32,6 @@ class GithubUserCache @Inject constructor(
                 )
             }
             db.userDao.insert(roomUsers)
-        }.subscribeOn(Schedulers.io())
+        }.subscribeOn(schedulerUI)
     }
 }
