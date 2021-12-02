@@ -12,7 +12,8 @@ import ru.terrakok.cicerone.Router
 
 class UserPresenter(
     private val repositoriesRepo: GithubRepositoriesRepo,
-    private val router: Router, private val schedulerUI: Scheduler, private val user: GithubUser
+    private val router: Router, private val schedulerUI: Scheduler,
+    private val user: GithubUser
 ) : MvpPresenter<UserView>() {
 
     class RepositoriesListPresenter : IUserRepositoryListPresenter {
