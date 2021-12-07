@@ -1,9 +1,12 @@
-package com.example.gb_libs_lesson1.test.presenter
+package com.example.gb_libs_lesson1.test.presenter.search
 
 import com.example.gb_libs_lesson1.test.model.SearchResponse
+import com.example.gb_libs_lesson1.test.presenter.PresenterContract
 import com.example.gb_libs_lesson1.test.repository.GitHubRepository
 import com.example.gb_libs_lesson1.test.repository.GitHubRepository.GitHubRepositoryCallback
 import com.example.gb_libs_lesson1.test.view.ViewContract
+import com.example.gb_libs_lesson1.test.view.search.MainTestActivity
+import com.example.gb_libs_lesson1.test.view.search.ViewSearchContract
 import retrofit2.Response
 
 /**
@@ -15,13 +18,25 @@ import retrofit2.Response
  */
 
 internal class SearchPresenter internal constructor(
-    private val viewContract: ViewContract,
+    private val viewContract: ViewSearchContract,
     private val repository: GitHubRepository
-) : PresenterContract, GitHubRepositoryCallback {
+) : PresenterSearchContract, GitHubRepositoryCallback {
+
+    var view: ViewContract? = null
 
     override fun searchGitHub(searchQuery: String) {
         viewContract.displayLoading(true)
         repository.searchGithub(searchQuery, this)
+    }
+
+    override fun onAttach(view: ViewContract) {
+        if (this.view == null && this.view != view) {
+            this.view = view
+        }
+    }
+
+    override fun onDetach() {
+        view = null
     }
 
     override fun handleGitHubResponse(response: Response<SearchResponse?>?) {

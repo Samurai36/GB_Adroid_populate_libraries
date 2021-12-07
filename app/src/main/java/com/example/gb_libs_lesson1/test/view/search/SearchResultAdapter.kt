@@ -1,4 +1,4 @@
-package com.example.gb_libs_lesson1.test.view
+package com.example.gb_libs_lesson1.test.view.search
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gb_libs_lesson1.R
 import com.example.gb_libs_lesson1.test.model.SearchResult
-import com.example.gb_libs_lesson1.test.view.SearchResultAdapter.SearchResultViewHolder
+import com.example.gb_libs_lesson1.test.view.search.SearchResultAdapter.SearchResultViewHolder
 import kotlinx.android.synthetic.main.list_item.view.*
 
 internal class SearchResultAdapter : RecyclerView.Adapter<SearchResultViewHolder>() {

@@ -24,6 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".test.view.search.MainTestActivity" />
+        <activity android:name=".test.view.details.DetailsActivity" />
     </application>
 
 </manifest>

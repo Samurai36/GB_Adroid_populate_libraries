@@ -2,9 +2,12 @@ package com.example.gb_libs_lesson1
 
 import com.example.gb_libs_lesson1.test.model.SearchResponse
 import com.example.gb_libs_lesson1.test.model.SearchResult
-import com.example.gb_libs_lesson1.test.presenter.SearchPresenter
+import com.example.gb_libs_lesson1.test.presenter.search.SearchPresenter
 import com.example.gb_libs_lesson1.test.repository.GitHubRepository
 import com.example.gb_libs_lesson1.test.view.ViewContract
+import com.example.gb_libs_lesson1.test.view.search.ViewSearchContract
+import junit.framework.TestCase
+import org.junit.Assert
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -22,7 +25,10 @@ class SearchPresenterTest {
     private lateinit var repository: GitHubRepository
 
     @Mock
-    private lateinit var viewContract: ViewContract
+    private lateinit var viewContract: ViewSearchContract
+
+    @Mock
+    private lateinit var view: ViewContract
 
     @Before
     fun setUp() {
@@ -148,5 +154,29 @@ class SearchPresenterTest {
 
         //Убеждаемся, что ответ от сервера обрабатывается корректно
         verify(viewContract, times(1)).displaySearchResults(searchResults, 101)
+    }
+
+    @Test
+    fun onDetach_SearchPresenter() {
+        presenter.onDetach()
+        val instance = presenter.javaClass
+        instance.declaredFields.forEach {
+            it.isAccessible = true
+            if (it.name == "view") {
+                assertNull(it.get(presenter))
+            }
+        }
+    }
+
+    @Test
+    fun onAttach_SearchPresenter() {
+        presenter.onAttach(viewContract)
+        val instance = presenter.javaClass
+        instance.declaredFields.forEach {
+            it.isAccessible = true
+            if (it.name == "view") {
+                assertEquals(viewContract, it.get(presenter))
+            }
+        }
     }
 }

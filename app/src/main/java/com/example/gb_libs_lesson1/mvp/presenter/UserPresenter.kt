@@ -41,7 +41,7 @@ class UserPresenter(
         }
     }
 
-    private fun loadData() {
+     fun loadData() {
         repositoriesRepo.getRepositories(user)
             .observeOn(schedulerUI)
             .subscribe({ repositories ->
