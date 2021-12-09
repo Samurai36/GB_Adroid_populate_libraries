@@ -1,15 +1,16 @@
 package com.example.gb_libs_lesson1.test.repository
 
 import com.example.gb_libs_lesson1.test.model.SearchResponse
+import com.example.gb_libs_lesson1.test.presenter.RepositoryContract
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-internal class GitHubRepository(private val gitHubApi: GitHubApi) {
+internal class GitHubRepository(private val gitHubApi: GitHubApi) : RepositoryContract {
 
-    fun searchGithub(
+    override fun searchGithub(
         query: String,
-        callback: GitHubRepositoryCallback
+        callback: RepositoryCallback
     ) {
         val call = gitHubApi.searchGithub(query)
         call?.enqueue(object : Callback<SearchResponse?> {

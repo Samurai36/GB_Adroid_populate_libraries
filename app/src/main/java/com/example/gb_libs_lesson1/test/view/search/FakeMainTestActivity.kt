@@ -7,21 +7,16 @@ import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gb_libs_lesson1.R
-import com.example.gb_libs_lesson1.BuildConfig
 import com.example.gb_libs_lesson1.test.model.SearchResult
 import com.example.gb_libs_lesson1.test.presenter.RepositoryContract
 import com.example.gb_libs_lesson1.test.presenter.search.PresenterSearchContract
 import com.example.gb_libs_lesson1.test.presenter.search.SearchPresenter
 import com.example.gb_libs_lesson1.test.repository.FakeGitHubRepository
-import com.example.gb_libs_lesson1.test.repository.GitHubApi
-import com.example.gb_libs_lesson1.test.repository.GitHubRepository
 import com.example.gb_libs_lesson1.test.view.details.DetailsActivity
 import kotlinx.android.synthetic.main.activitytest_main.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
-class MainTestActivity : AppCompatActivity(), ViewSearchContract {
+class FakeMainTestActivity : AppCompatActivity(), ViewSearchContract {
 
     private val adapter = SearchResultAdapter()
     private val presenter: PresenterSearchContract =
@@ -56,7 +51,7 @@ class MainTestActivity : AppCompatActivity(), ViewSearchContract {
                     return@OnEditorActionListener true
                 } else {
                     Toast.makeText(
-                        this@MainTestActivity,
+                        this@FakeMainTestActivity,
                         getString(R.string.enter_search_word),
                         Toast.LENGTH_SHORT
                     ).show()
@@ -67,15 +62,7 @@ class MainTestActivity : AppCompatActivity(), ViewSearchContract {
         })
     }
 
-    private fun createRepository(): RepositoryContract =
-        GitHubRepository(createRetrofit().create(GitHubApi::class.java))
-
-    private fun createRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
+    private fun createRepository(): RepositoryContract = FakeGitHubRepository()
 
     override fun displaySearchResults(
         searchResults: List<SearchResult>,
@@ -109,5 +96,6 @@ class MainTestActivity : AppCompatActivity(), ViewSearchContract {
 
     companion object {
         const val BASE_URL = "https://api.github.com"
+        const val FAKE = "FAKE"
     }
 }

@@ -26,6 +26,7 @@
         </activity>
         <activity android:name=".test.view.search.MainTestActivity" />
         <activity android:name=".test.view.details.DetailsActivity" />
+        <activity android:name=".test.view.search.FakeMainTestActivity" />
     </application>
 
 </manifest>

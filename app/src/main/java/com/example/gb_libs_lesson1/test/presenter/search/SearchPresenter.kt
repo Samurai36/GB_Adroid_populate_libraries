@@ -2,8 +2,10 @@ package com.example.gb_libs_lesson1.test.presenter.search
 
 import com.example.gb_libs_lesson1.test.model.SearchResponse
 import com.example.gb_libs_lesson1.test.presenter.PresenterContract
+import com.example.gb_libs_lesson1.test.presenter.RepositoryContract
 import com.example.gb_libs_lesson1.test.repository.GitHubRepository
 import com.example.gb_libs_lesson1.test.repository.GitHubRepository.GitHubRepositoryCallback
+import com.example.gb_libs_lesson1.test.repository.RepositoryCallback
 import com.example.gb_libs_lesson1.test.view.ViewContract
 import com.example.gb_libs_lesson1.test.view.search.MainTestActivity
 import com.example.gb_libs_lesson1.test.view.search.ViewSearchContract
@@ -19,8 +21,8 @@ import retrofit2.Response
 
 internal class SearchPresenter internal constructor(
     private val viewContract: ViewSearchContract,
-    private val repository: GitHubRepository
-) : PresenterSearchContract, GitHubRepositoryCallback {
+    private val repository: RepositoryContract
+) : PresenterSearchContract, RepositoryCallback {
 
     var view: ViewContract? = null
 
