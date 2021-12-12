@@ -114,4 +114,7 @@ dependencies {
     // Kaspresso
     androidTestImplementation 'com.kaspersky.android-components:kaspresso:1.3.0'
     androidTestImplementation "com.kaspersky.android-components:kaspresso-allure-support:1.3.0"
+
+    //UI Automator
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
 }

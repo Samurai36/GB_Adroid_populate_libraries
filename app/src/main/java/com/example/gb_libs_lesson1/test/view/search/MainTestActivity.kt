@@ -65,6 +65,13 @@ class MainTestActivity : AppCompatActivity(), ViewSearchContract {
             }
             false
         })
+
+        searchButtonTestMA.setOnClickListener {
+            val query = searchEditText.text.toString()
+            if (query.isNotBlank()) {
+                presenter.searchGitHub(query)
+            }
+        }
     }
 
     private fun createRepository(): RepositoryContract =

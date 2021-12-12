@@ -47,6 +47,14 @@
         app:layout_constraintTop_toBottomOf="@+id/toDetailsActivityButton"
         tools:text="Number of results: 100" />
 
+    <Button
+        android:id="@+id/searchButtonTestMA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        app:layout_constraintTop_toBottomOf="@id/totalCountTextView"
+        android:text="@string/search" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
