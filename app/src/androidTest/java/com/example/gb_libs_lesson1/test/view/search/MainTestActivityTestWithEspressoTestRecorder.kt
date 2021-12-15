@@ -8,9 +8,9 @@ import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
 import com.example.gb_libs_lesson1.R
 import com.example.gb_libs_lesson1.test.TEST_NUMBER_OF_RESULTS_MINUS_1
 import com.example.gb_libs_lesson1.test.TEST_NUMBER_OF_RESULTS_PLUS_1
@@ -33,6 +33,8 @@ class MainTestActivityTestWithEspressoTestRecorder {
 
     @Test
     fun mainTestActivityTestWithEspressoTestRecorder() {
+
+        //находим кнопку по тексту и позиции с проверкой что она отображается
         val materialButton = onView(
             allOf(
                 withId(R.id.toDetailsActivityButton), withText("to details"),
@@ -46,6 +48,7 @@ class MainTestActivityTestWithEspressoTestRecorder {
                 isDisplayed()
             )
         )
+        // нажимаем на кнопку
         materialButton.perform(click())
 
         val textView = onView(
@@ -55,6 +58,7 @@ class MainTestActivityTestWithEspressoTestRecorder {
                 isDisplayed()
             )
         )
+        // проверяем, что текст в текствью совпадает с ожидаемым текстом
         textView.check(matches(withText(TEST_NUMBER_OF_RESULTS_ZERO)))
 
         val materialButton2 = onView(
@@ -72,14 +76,7 @@ class MainTestActivityTestWithEspressoTestRecorder {
         )
         materialButton2.perform(click())
 
-        val textView2 = onView(
-            allOf(
-                withId(R.id.totalCountTextView), withText(TEST_NUMBER_OF_RESULTS_PLUS_1),
-                withParent(withParent(withId(android.R.id.content))),
-                isDisplayed()
-            )
-        )
-        textView2.check(matches(withText(TEST_NUMBER_OF_RESULTS_PLUS_1)))
+        textView.check(matches(withText(TEST_NUMBER_OF_RESULTS_PLUS_1)))
 
         val materialButton3 = onView(
             allOf(
@@ -96,30 +93,11 @@ class MainTestActivityTestWithEspressoTestRecorder {
         )
         materialButton3.perform(click())
 
-        val materialButton4 = onView(
-            allOf(
-                withId(R.id.decrementButton), withText("-"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        materialButton4.perform(click())
+        materialButton3.perform(click())
 
-        val textView3 = onView(
-            allOf(
-                withId(R.id.totalCountTextView), withText(TEST_NUMBER_OF_RESULTS_MINUS_1),
-                withParent(withParent(withId(android.R.id.content))),
-                isDisplayed()
-            )
-        )
-        textView3.check(matches(withText(TEST_NUMBER_OF_RESULTS_MINUS_1)))
+        textView.check(matches(withText(TEST_NUMBER_OF_RESULTS_MINUS_1)))
 
+        // нажимаем кнопку "назад"
         pressBack()
 
         val appCompatEditText = onView(
@@ -137,35 +115,10 @@ class MainTestActivityTestWithEspressoTestRecorder {
         )
         appCompatEditText.perform(click())
 
-        val appCompatEditText2 = onView(
-            allOf(
-                withId(R.id.searchEditText),
-                childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatEditText2.perform(replaceText("testSearch"), closeSoftKeyboard())
-
-        val appCompatEditText3 = onView(
-            allOf(
-                withId(R.id.searchEditText), withText("testSearch"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatEditText3.perform(pressImeActionButton())
+        // в поле edittext вбиваем тест, закрываем клавиатуру
+        appCompatEditText.perform(replaceText("testSearch"), closeSoftKeyboard())
+        // нажимаем кнопку действия для поиска
+        appCompatEditText.perform(pressImeActionButton())
 
     }
 
