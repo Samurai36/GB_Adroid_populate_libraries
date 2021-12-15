@@ -5,6 +5,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.gb_libs_lesson1.screen.DetailsScreen
+import com.example.gb_libs_lesson1.test.TEST_NUMBER_OF_RESULTS_MINUS_1
+import com.example.gb_libs_lesson1.test.TEST_NUMBER_OF_RESULTS_ZERO
 import com.example.gb_libs_lesson1.test.view.details.DetailsActivity
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import junit.framework.TestCase.assertEquals
@@ -67,7 +69,7 @@ class DetailsActivityKaspressoTest : TestCase() {
             step("Check TextView has text") {
                 DetailsScreen {
                     totalCountTextView {
-                        hasText("Number of results: 0")
+                        hasText(TEST_NUMBER_OF_RESULTS_ZERO)
                     }
                 }
             }
@@ -90,7 +92,7 @@ class DetailsActivityKaspressoTest : TestCase() {
                     }
                     totalCountTextView {
                         flakySafely(timeoutMs = 7000) { isVisible() }
-                        hasText("Number of results: -1")
+                        hasText(TEST_NUMBER_OF_RESULTS_MINUS_1)
                     }
                 }
             }
@@ -102,7 +104,7 @@ class DetailsActivityKaspressoTest : TestCase() {
                     }
                     totalCountTextView {
                         flakySafely(timeoutMs = 7000) { isVisible() }
-                        hasText("Number of results: 0")
+                        hasText(TEST_NUMBER_OF_RESULTS_ZERO)
                     }
                 }
             }

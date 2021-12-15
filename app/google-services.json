@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "737324708952",
+    "project_id": "gb-libraries-lessongit-tests",
+    "storage_bucket": "gb-libraries-lessongit-tests.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737324708952:android:aa718cd9232b08874c462d",
+        "android_client_info": {
+          "package_name": "com.example.gb_libs_lesson1.fake"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "737324708952-p9p7buqv6d4416mcc9g3blnjlehqsns6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQWIIbvv2HN20Onmi6Fs3_TOkrN5Rvn9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "737324708952-p9p7buqv6d4416mcc9g3blnjlehqsns6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

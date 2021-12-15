@@ -60,7 +60,7 @@ class FakeMainActivityKaspressoTest : TestCase() {
                 MainTestScreen {
                     searchEditText {
                         typeText("algol")
-                        Espresso.closeSoftKeyboard()
+                        this@MainTestScreen.closeSoftKeyboard()
                         pressImeAction()
                     }
                     totalCountTextView {

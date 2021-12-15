@@ -65,13 +65,13 @@ class MainActivityKaspressoTest : TestCase() {
                 MainTestScreen {
                     searchEditText {
                         typeText("algol")
-                        Espresso.closeSoftKeyboard()
+                        this@MainTestScreen.closeSoftKeyboard()
                         pressImeAction()
                     }
                     Espresso.onView(ViewMatchers.isRoot()).perform(delay())
                     totalCountTextView {
                         flakySafely(timeoutMs = 7000) { isVisible() }
-                        hasText("Number of results: 2702")
+                        hasText("Number of results: 2719")
                     }
                 }
             }
