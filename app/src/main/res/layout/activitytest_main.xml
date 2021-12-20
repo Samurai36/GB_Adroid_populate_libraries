@@ -61,5 +61,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/toDetailsActivityButton" />
+        app:layout_constraintTop_toBottomOf="@id/searchButtonTestMA" />
 </androidx.constraintlayout.widget.ConstraintLayout>

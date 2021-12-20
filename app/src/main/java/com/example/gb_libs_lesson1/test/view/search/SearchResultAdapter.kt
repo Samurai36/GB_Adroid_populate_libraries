@@ -3,6 +3,7 @@ package com.example.gb_libs_lesson1.test.view.search
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gb_libs_lesson1.R
 import com.example.gb_libs_lesson1.test.model.SearchResult
@@ -18,7 +19,7 @@ internal class SearchResultAdapter : RecyclerView.Adapter<SearchResultViewHolder
         viewType: Int
     ): SearchResultViewHolder {
         return SearchResultViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.list_item, null)
+            LayoutInflater.from(parent.context).inflate(R.layout.test_list_item, null)
         )
     }
 
@@ -42,6 +43,9 @@ internal class SearchResultAdapter : RecyclerView.Adapter<SearchResultViewHolder
 
         fun bind(searchResult: SearchResult) {
             itemView.repositoryName.text = searchResult.fullName
+            itemView.repositoryName.setOnClickListener {
+                Toast.makeText(itemView.context, searchResult.fullName, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

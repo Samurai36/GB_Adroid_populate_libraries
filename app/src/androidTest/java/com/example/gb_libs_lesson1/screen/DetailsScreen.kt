@@ -16,7 +16,5 @@ object DetailsScreen : KScreen<DetailsScreen>() {
 
     val incrementButton = KButton { withId(R.id.incrementButton) }
 
-    val totalCountTextView = KTextView { withId(R.id.totalCountTextView) }
-
-    val checkBox = KCheckBox { withId(R.id.checkBox) }
+    val totalCountTextView = KTextView { withId(R.id.totalCountTextView)}
 }
