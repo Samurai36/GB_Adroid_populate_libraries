@@ -2,6 +2,9 @@ package com.example.gb_libs_lesson1.test.repository
 
 import com.example.gb_libs_lesson1.test.model.SearchResponse
 import com.example.gb_libs_lesson1.test.presenter.RepositoryContract
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,6 +33,14 @@ internal class GitHubRepository(private val gitHubApi: GitHubApi) : RepositoryCo
             }
         })
     }
+
+    override fun searchGithub(query: String): Observable<SearchResponse> =
+        gitHubApi.searchGithubRx(query)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+
+    override suspend fun searchGithubAsync(query: String): SearchResponse =
+        gitHubApi.searchGithubAsync(query).await()
 
     interface GitHubRepositoryCallback {
         fun handleGitHubResponse(response: Response<SearchResponse?>?)
